@@ -94,7 +94,6 @@ class PaginatorButton(Button):
 
         embed = Embed(
             description="🔢 What **page** would you like to skip to?",
-            color=0x6DB19A
         )
 
         prompt = await interaction.followup.send(
