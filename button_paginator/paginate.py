@@ -75,14 +75,14 @@ class PaginatorButton(Button):
         """Go to the previous page."""
         self.paginator.current_page = (
             self.paginator.current_page - 1
-        ) % len(self.paginator.pages)
+        ) % len(self.paginator.embeds)
         await self.update_page()
 
     async def next_page(self, _: Interaction) -> None:
         """Go to the next page."""
         self.paginator.current_page = (
             self.paginator.current_page + 1
-        ) % len(self.paginator.pages)
+        ) % len(self.paginator.embeds)
         await self.update_page()
 
     async def navigate(self, interaction: Interaction) -> None:
@@ -119,7 +119,7 @@ class PaginatorButton(Button):
             return
 
         page_number = int(response.content) - 1
-        if 0 <= page_number < len(self.paginator.pages):
+        if 0 <= page_number < len(self.paginator.embeds):
             self.paginator.current_page = page_number
 
         for child in self.paginator.children:
@@ -138,7 +138,7 @@ class PaginatorButton(Button):
 
     async def update_page(self) -> None:
         """Update the current page."""
-        page = self.paginator.pages[self.paginator.current_page]
+        page = self.paginator.embeds[self.paginator.current_page]
 
         if self.paginator.type == "embed":
             await self.paginator.message.edit(embed=page, view=self.paginator)
@@ -185,7 +185,7 @@ class Paginator(View):
     @property
     def type(self) -> str:
         """Return the type of content (embed or text)."""
-        return "embed" if isinstance(self.pages[0], Embed) else "text"
+        return "embed" if isinstance(self.embeds[0], Embed) else "text"
 
     async def send(self, content: Union[str, Embed], **kwargs) -> Message:
         """Send the paginator message."""
