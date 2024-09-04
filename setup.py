@@ -9,7 +9,7 @@ setup(
     version="1.0.0",
     description="A python library create a discord.py paginator",
     long_description=desc,
-    long_description_content_type="text/markdown",,
+    long_description_content_type="text/markdown",
     license = "MIT",
     author="ZaaakW",
     url="https://github.com/ZaaakW/button_paginator",
